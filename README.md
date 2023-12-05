@@ -18,23 +18,29 @@ Vibration mechanisms provide tactile feedback, enhancing alertness and ensuring 
 5. Remote Control:
 Station engineers can remotely send signals through Firebase to trigger alerts on the worker's device.
 This feature allows for immediate responsiveness to changing conditions and emergencies.
+
 Components
 ESP32 4G LTE Board: The core microcontroller for processing and communication.
+
 LEDs: Visual indicators for signaling the train's direction.
+
 Audio Module: Generates loud noise alerts for audible warnings.
+
 Vibration Motor: Provides tactile feedback to workers.
+
 Firebase: Cloud-based platform for remote control and data exchange.
+
+
 Getting Started
 Hardware Setup:
-
 Connect the ESP32 board, LEDs, audio module, and vibration motor following the provided schematics.
+
 Firebase Configuration:
-
 Set up a Firebase project and configure the necessary credentials in the Arduino IDE.
+
 Code Installation:
-
 Upload the Arduino code provided in this repository to the ESP32 board.
-Usage:
 
+Usage:
 Station engineers can send signals through Firebase to trigger alerts on the worker's device.
 Workers will receive visual, audible, and tactile warnings, ensuring they are promptly informed about approaching trains.
