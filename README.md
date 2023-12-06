@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Train-Industrial-Project
- Railway Worker Safety Alert System Alert system for railway workers using ESP32 4G LTE. Visual, audible, and tactile warnings via LEDs, noise, and vibration indicate approaching trains. Controlled remotely through Firebase for enhanced safety on the tracks.
-=======
 Railway Worker Safety Alert System
 Overview
 Railway Worker Safety Alert System is a cutting-edge project designed to enhance the safety of workers operating on railway lines. The system employs state-of-the-art technology, leveraging the ESP32 4G LTE board for seamless communication and Firebase for cloud-based control. The primary goal is to provide timely warnings to railway workers about approaching trains, ensuring they have ample time to clear the tracks and avoid potential hazards.
@@ -48,4 +44,3 @@ Upload the Arduino code provided in this repository to the ESP32 board.
 Usage:
 Station engineers can send signals through Firebase to trigger alerts on the worker's device.
 Workers will receive visual, audible, and tactile warnings, ensuring they are promptly informed about approaching trains.
->>>>>>> d51a416f52e26306f2bcf57fb6757b2a9ea4151a
