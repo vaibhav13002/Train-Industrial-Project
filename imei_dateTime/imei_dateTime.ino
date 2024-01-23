@@ -26,7 +26,8 @@ char pass[] = "";
 // bool reply = false;
 TinyGsm modem(SerialAT);
 #define ALERT_PHONE_NUMBER "+919960491371" // Replace with the recipient's phone number
-String stationCode = "123456";
+String stationCode = "Vasai-01";
+String number = "+919960491371";
 
 
 
@@ -75,8 +76,14 @@ void setup() {    //modem setup isko same rkhna h iske last me add krna h jo cha
 // Print IMEI number and MAC address
   SerialAT.println("AT+CGSN"); // Get IMEI number
   delay(500);
+  // String imei = SerialAT.readString();
   Serial.println("IMEI: " + SerialAT.readString());
 
+//  sendSMS("Vaibhav");
+  String imei = SerialAT.readString(); // Read IMEI from the modem
+  // String dateTime = getDateTime();
+  // String fullMessage = "Station Code: " + stationCode + "\nIMEI: " + imei + "\nDate-Time: " + getDateTime();
+  SendMessage();
 }
 
 void sendSMS(String message) {
@@ -92,10 +99,59 @@ void sendSMS(String message) {
   SerialAT.write(26); // End of message character
   delay(1000);
 }
-
+String _readSerial() {
+  _timeout = 0;
+  while (!SerialAT.available() && _timeout < 12000) {
+    delay(13);
+    _timeout++;
+  }
+  if (SerialAT.available()) {
+    return SerialAT.readString();
+  }
+  return "";
+}
 void loop() {
 
 }
+
+void SendMessage() {
+  SerialAT.println("AT+CMGF=1");    // Sets the GSM Module in Text Mode
+  delay(1000);
+  SerialAT.println("AT+CMGS=\"" + number + "\"\r"); // Mobile phone number to send message
+  delay(1000);
+String imei = SerialAT.readString();
+  // Construct message with station code, IMEI, and date-time
+  // String message = "Station Code: " + stationCode + "\nIMEI: " + imei + "\nDate-Time: " + getDateTime();
+  String message = "Station Code: " + stationCode + "\nIMEI: " + imei + "\nDate-Time: " + getDateTime(); 
+
+  SerialAT.println(message);
+  delay(100);
+  SerialAT.println((char)26);  // ASCII code of CTRL+Z
+  delay(1000);
+  _buffer = _readSerial();
+  Serial.println("Message Sent!");
+}
+
+// void sendSMS(String message) {
+//   String imei = SerialAT.readString(); // Read IMEI from the modem
+//   String dateTime = getDateTime(); // Get date-time
+
+//   // Construct the SMS message
+//   String fullMessage = "Station Code: " + stationCode + "\nIMEI: " + imei + "\nDate-Time: " + getDateTime() + "\nMessage: " + message;
+
+//   SerialAT.println("AT+CMGF=1"); // Set SMS mode to text
+//   delay(500);
+
+//   SerialAT.print("AT+CMGS=\"");
+//   SerialAT.print(ALERT_PHONE_NUMBER);
+//   SerialAT.println("\"");
+
+//   delay(1000);
+//   SerialAT.print(fullMessage);
+//   SerialAT.write(26); // End of message character
+//   delay(1000);
+// }
+
 
 //a method me h so jab call hoga tab he run hogha
 String getDateTime() {
@@ -123,37 +179,4 @@ if (SerialAT.available()) {
     Serial.println(timestamp);
   }
 }
-
 }
-
-
-////Separate Serial print function agr upr wala nhi chala tab
-
-// String getIMEI()
-// {
-//   SerialAT.println("AT+CGSN"); // Get IMEI number
-//   delay(500);
-//   return _readSerial();
-// }
-// ////////MAC address
-// String getMAC()
-// {
-//   SerialAT.println("AT+CIPSTAMAC?"); // Get MAC address
-//   delay(500);
-//   return _readSerial();
-// }
-// /////Serial Print
-// String _readSerial()
-// {
-//   _timeout = 0;
-//   while (!SerialAT.available() && _timeout < 12000)
-//   {
-//     delay(13);
-//     _timeout++;
-//   }
-//   if (SerialAT.available())
-//   {
-//     return SerialAT.readString();
-//   }
-//   return "";
-// }
