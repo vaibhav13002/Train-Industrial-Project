@@ -111,7 +111,7 @@ String _readSerial() {
   return "";
 }
 void loop() {
-
+getDateTime();
 }
 
 void SendMessage() {

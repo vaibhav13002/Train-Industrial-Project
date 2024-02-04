@@ -84,7 +84,7 @@ int Main_dn_g_2__State = 0;
 int Third_up_r_3_State = 0;
 int Third_up_g_3_State = 0;
 int Third_dn_r_4_State = 0;
-int Third_dn_g_4_State = -0;
+int Third_dn_g_4_State = 0;
 
 
 int prev_Main_up_r_1_State=-1;
